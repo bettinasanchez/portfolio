@@ -1,19 +1,688 @@
-<html>
-    <head>
-        <title>
-            Bettina's Portfolio
-        </title>
-    </head>
-    <body>
-        <h1>
-            Bettina's Portfolio
-        </h1>
-        <p>
-            I'm typing this 
-        </p>
-        <p>
-            another paragraph 
-        </p>
-        <img src="IMG_0744.jpg" width="100%"/>
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bettina's Photography</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* SAFE TO CUSTOMIZE: Font imports - you can change these to any Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Times+New+Roman&display=swap');
+
+        :root {
+            /* SAFE TO CUSTOMIZE: Color variables - change these to modify the entire color scheme */
+            --primary-color: #ffffff;           /* Main accent color (buttons, highlights) */
+            --secondary-color: #cccccc;         /* Secondary elements */
+            --accent-color: #f0f0f0;           /* Light accent color */
+            --dark-color: #000000;             /* Dark backgrounds and text */
+            --text-color: #333333;             /* Main text color */
+            --light-bg: #f8f8f8;              /* Light background sections */
+            --border-color: #dddddd;           /* Borders and lines */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            /* SAFE TO CUSTOMIZE: Main font family - change 'Times New Roman' to any font */
+            font-family: 'Times New Roman', serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+            /* SAFE TO CUSTOMIZE: Background color for entire page */
+            background-color: white;
+        }
+
+        /* HEADER SECTION - SAFE TO CUSTOMIZE */
+        .header {
+            height: 16.67vh; /* SAFE TO CUSTOMIZE: Header height (currently 1/6 of screen) */
+            background: var(--dark-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            /* SAFE TO CUSTOMIZE: Add border, box-shadow, or other decorative elements */
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        /* SAFE TO CUSTOMIZE: Remove or modify this texture overlay */
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            /* SAFE TO CUSTOMIZE: Change or remove this background pattern */
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 2px,
+                rgba(255,255,255,0.02) 2px,
+                rgba(255,255,255,0.02) 4px
+            );
+            opacity: 0.5;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            padding: 0 2rem;
+        }
+
+        .header-title {
+            /* SAFE TO CUSTOMIZE: Font family, size, weight, letter-spacing */
+            font-family: 'Times New Roman', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            /* SAFE TO CUSTOMIZE: Text effects */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            letter-spacing: 2px;
+        }
+
+        .header-subtitle {
+            /* SAFE TO CUSTOMIZE: Font styling for subtitle */
+            font-size: clamp(0.9rem, 2vw, 1.2rem);
+            opacity: 0.9;
+            font-weight: normal;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-style: italic;
+        }
+
+        /* GALLERY SECTION - SAFE TO CUSTOMIZE */
+        .gallery-section {
+            /* SAFE TO CUSTOMIZE: Padding, background, margins */
+            padding: 4rem 2rem;
+            background: white;
+            min-height: calc(83.33vh - 200px);
+        }
+
+        .container {
+            max-width: 1200px; /* SAFE TO CUSTOMIZE: Max width of content */
+            margin: 0 auto;
+        }
+
+        .section-title {
+            /* SAFE TO CUSTOMIZE: Section title styling */
+            font-family: 'Times New Roman', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: bold;
+            color: var(--dark-color);
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            letter-spacing: 1px;
+        }
+
+        /* SAFE TO CUSTOMIZE: Decorative underline - can be removed or changed */
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--dark-color);
+            border-radius: 2px;
+        }
+
+        /* MAIN PHOTO DISPLAY - DO NOT MODIFY (Core functionality) */
+        .main-photo-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px; /* SAFE TO CUSTOMIZE: Max width of photo container */
+            margin: 0 auto 3rem;
+            /* SAFE TO CUSTOMIZE: Visual styling */
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border: 2px solid var(--border-color);
+        }
+
+        .main-photo {
+            width: 100%;
+            height: 500px; /* SAFE TO CUSTOMIZE: Height of main photo */
+            object-fit: cover;
+            transition: transform 0.3s ease;
+            /* DO NOT MODIFY: Core image functionality */
+        }
+
+        /* SAFE TO CUSTOMIZE: Hover effect */
+        .main-photo:hover {
+            transform: scale(1.02);
+        }
+
+        .photo-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            /* SAFE TO CUSTOMIZE: Info overlay styling */
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .photo-title {
+            /* SAFE TO CUSTOMIZE: Photo title styling */
+            font-family: 'Times New Roman', serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .photo-counter {
+            /* SAFE TO CUSTOMIZE: Counter styling */
+            font-size: 0.9rem;
+            opacity: 0.8;
+            font-style: italic;
+        }
+
+        /* NAVIGATION CONTROLS - SAFE TO CUSTOMIZE APPEARANCE */
+        .gallery-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem; /* SAFE TO CUSTOMIZE: Spacing between controls */
+            margin-bottom: 3rem;
+        }
+
+        .nav-arrow {
+            /* SAFE TO CUSTOMIZE: Button appearance */
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--dark-color);
+            border: 2px solid var(--primary-color);
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* DO NOT MODIFY: onclick functionality */
+        }
+
+        /* SAFE TO CUSTOMIZE: Hover effects */
+        .nav-arrow:hover {
+            transform: scale(1.1);
+            background: var(--primary-color);
+            color: var(--dark-color);
+        }
+
+        .nav-arrow:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .nav-arrow:disabled:hover {
+            transform: scale(1);
+            background: var(--dark-color);
+            color: white;
+        }
+
+        .auto-play-btn {
+            /* SAFE TO CUSTOMIZE: Auto-play button styling */
+            padding: 12px 25px;
+            background: var(--dark-color);
+            border: 2px solid var(--primary-color);
+            border-radius: 30px;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Times New Roman', serif;
+            /* DO NOT MODIFY: onclick functionality */
+        }
+
+        /* SAFE TO CUSTOMIZE: Button hover and active states */
+        .auto-play-btn:hover {
+            transform: translateY(-2px);
+            background: var(--primary-color);
+            color: var(--dark-color);
+        }
+
+        .auto-play-btn.active {
+            background: var(--primary-color);
+            color: var(--dark-color);
+        }
+
+        /* THUMBNAIL STRIP - SAFE TO CUSTOMIZE APPEARANCE */
+        .thumbnail-strip {
+            display: flex;
+            justify-content: center;
+            gap: 1rem; /* SAFE TO CUSTOMIZE: Spacing between thumbnails */
+            overflow-x: auto;
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .thumbnail {
+            /* SAFE TO CUSTOMIZE: Thumbnail appearance */
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            border: 3px solid transparent;
+            /* DO NOT MODIFY: onclick functionality */
+        }
+
+        /* SAFE TO CUSTOMIZE: Thumbnail hover and active states */
+        .thumbnail:hover {
+            opacity: 0.8;
+            transform: scale(1.05);
+        }
+
+        .thumbnail.active {
+            opacity: 1;
+            border-color: var(--dark-color);
+            transform: scale(1.1);
+        }
+
+        /* ABOUT SECTION - SAFE TO CUSTOMIZE */
+        .about-section {
+            /* SAFE TO CUSTOMIZE: Section styling */
+            padding: 4rem 2rem;
+            background: var(--light-bg);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .about-content {
+            max-width: 800px; /* SAFE TO CUSTOMIZE: Content width */
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content .lead {
+            /* SAFE TO CUSTOMIZE: Lead paragraph styling */
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--dark-color);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .about-content p {
+            /* SAFE TO CUSTOMIZE: Paragraph styling */
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        /* FOOTER - SAFE TO CUSTOMIZE */
+        .footer {
+            /* SAFE TO CUSTOMIZE: Footer styling */
+            background: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            font-family: 'Times New Roman', serif;
+            border-top: 3px solid var(--primary-color);
+        }
+
+        .footer p {
+            opacity: 0.8;
+            margin: 0;
+            font-style: italic;
+        }
+
+        /* RESPONSIVE DESIGN - SAFE TO CUSTOMIZE BREAKPOINTS AND STYLES */
+        @media (max-width: 768px) {
+            .header {
+                height: 20vh; /* SAFE TO CUSTOMIZE: Mobile header height */
+            }
+            
+            .gallery-section {
+                padding: 2rem 1rem;
+            }
+            
+            .main-photo {
+                height: 300px; /* SAFE TO CUSTOMIZE: Mobile photo height */
+            }
+            
+            .gallery-controls {
+                gap: 1rem;
+            }
+            
+            .nav-arrow {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+            
+            .thumbnail-strip {
+                padding: 0.5rem;
+            }
+            
+            .thumbnail {
+                width: 60px;
+                height: 45px;
+            }
+            
+            .about-section {
+                padding: 3rem 1rem;
+            }
+        }
+
+        /* ANIMATIONS - SAFE TO CUSTOMIZE OR REMOVE */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* SAFE TO CUSTOMIZE: Loading animation */
+        .photo-loading {
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER SECTION -->
+    <header class="header">
+        <div class="header-content">
+            <!-- SAFE TO CUSTOMIZE: Your name and title -->
+            <h1 class="header-title">Bettina Sanchez</h1>
+            <p class="header-subtitle">Photographer</p>
+        </div>
+    </header>
+
+    <!-- PHOTO GALLERY SECTION -->
+    <section class="gallery-section">
+        <div class="container">
+            <!-- SAFE TO CUSTOMIZE: Section title -->
+            <h2 class="section-title fade-in">My Photography</h2>
+            
+            <!-- Main Photo Display - DO NOT MODIFY STRUCTURE -->
+            <div class="main-photo-container fade-in">
+                <img class="main-photo" id="mainPhoto" src="" alt="">
+                <div class="photo-info">
+                    <div class="photo-title" id="mainPhotoTitle">Loading...</div>
+                    <div class="photo-counter">
+                        <span id="currentPhoto">1</span> / <span id="totalPhotos">12</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Controls - DO NOT MODIFY STRUCTURE OR onclick ATTRIBUTES -->
+            <div class="gallery-controls fade-in">
+                <button class="nav-arrow" id="prevBtn" onclick="previousPhoto()">←</button>
+                <button class="auto-play-btn" id="autoPlayBtn" onclick="toggleAutoPlay()">Auto Play</button>
+                <button class="nav-arrow" id="nextBtn" onclick="nextPhoto()">→</button>
+            </div>
+
+            <!-- Thumbnail Strip - DO NOT MODIFY STRUCTURE -->
+            <div class="thumbnail-strip fade-in" id="thumbnailStrip">
+                <!-- Thumbnails will be generated by JavaScript - DO NOT MODIFY -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="about-section">
+        <div class="container">
+            <!-- SAFE TO CUSTOMIZE: Section title -->
+            <h2 class="section-title fade-in">About Me</h2>
+            <div class="about-content fade-in">
+                <!-- SAFE TO CUSTOMIZE: All text content below -->
+                <p class="lead">I believe every story has the power to change how we see the world.</p>
+                
+                <p>My work lives at the intersection of journalism, art, and human connection.</p>
+                
+                <p>I'm a journalism and marketing student at Northwestern University and here I want to showcase the power of photography and visual storytelling.</p>
+                
+                <p>When I'm not writing or behind a camera, you'll find me exploring reading, getting lost in art galleries, or having deep conversations with strangers, family and friends. I believe the best stories come from authentic human connection.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <!-- SAFE TO CUSTOMIZE: Footer text -->
+            <p>&copy; 2025 Bettina Sanchez. Capturing stories, one frame at a time.</p>
+        </div>
+    </footer>
+
+    <script>
+        // PHOTOGRAPHY GALLERY DATA - SAFE TO CUSTOMIZE
+        // Replace these placeholder images with your actual photos
+        const photos = [
+            {
+                src: 'https://via.placeholder.com/800x500/ff6b6b/ffffff?text=Urban+Morning',
+                title: 'Urban Morning' // SAFE TO CUSTOMIZE: Photo titles
+            },
+            {
+                src: 'https://via.placeholder.com/800x500/4ecdc4/ffffff?text=Quiet+Streets',
+                title: 'Quiet Streets'
+            },
+            {
+                src: 'https://via.placeholder.com/800x500/ffe66d/ffffff?text=Golden+Hour',
+                title: 'Golden Hour'
+            },
+            {
+                src: 'https://via.placeholder.com/800x500/667eea/ffffff?text=City+Lights',
+                title: 'City Lights'
+            },
+            {
+                src: 'https://via.placeholder.com/800x500/764ba2/ffffff?text=Reflections',
+                title: 'Reflections'
+            },
+            {
+                src: 'https://via.placeholder.com/800x500/ff9a9e/ffffff?text=Shadow+Play',
+                title: 'Shadow Play'
+            },
+            {
+                src: 'https://via.placeholder.com/800x500/a8edea/ffffff?text=Natural+Light',
+                title: 'Natural Light'
+            },
+            {
+                src: 'https://via.placeholder.com/800x500/fed6e3/ffffff?text=Architecture',
+                title: 'Architecture'
+            },
+            {
+                src: 'https://via.placeholder.com/800x500/d1f2eb/ffffff?text=Portrait+Study',
+                title: 'Portrait Study'
+            },
+            {
+                src: 'https://via.placeholder.com/800x500/fadbd8/ffffff?text=Abstract+Forms',
+                title: 'Abstract Forms'
+            },
+            {
+                src: 'https://via.placeholder.com/800x500/ebf3fd/ffffff?text=Minimal+Space',
+                title: 'Minimal Space'
+            },
+            {
+                src: 'https://via.placeholder.com/800x500/fdf2e9/ffffff?text=Final+Frame',
+                title: 'Final Frame'
+            }
+        ];
+
+        // DO NOT MODIFY: Core functionality variables
+        let currentPhotoIndex = 0;
+        let autoPlayInterval = null;
+        let isAutoPlaying = false;
+
+        // SAFE TO CUSTOMIZE: Auto-play timing (currently 3 seconds)
+        const autoPlayDelay = 3000;
+
+        // DO NOT MODIFY: Core functionality functions below
+        function initGallery() {
+            updatePhoto();
+            updateCounter();
+            generateThumbnails();
+        }
+
+        function updatePhoto() {
+            const img = document.getElementById('mainPhoto');
+            const title = document.getElementById('mainPhotoTitle');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            img.classList.add('photo-loading');
+            
+            img.src = photos[currentPhotoIndex].src;
+            img.alt = photos[currentPhotoIndex].title;
+            title.textContent = photos[currentPhotoIndex].title;
+
+            img.onload = () => {
+                img.classList.remove('photo-loading');
+            };
+
+            prevBtn.disabled = currentPhotoIndex === 0;
+            nextBtn.disabled = currentPhotoIndex === photos.length - 1;
+
+            updateActiveThumbnail();
+        }
+
+        function updateCounter() {
+            document.getElementById('currentPhoto').textContent = currentPhotoIndex + 1;
+            document.getElementById('totalPhotos').textContent = photos.length;
+        }
+
+        function generateThumbnails() {
+            const strip = document.getElementById('thumbnailStrip');
+            strip.innerHTML = '';
+
+            photos.forEach((photo, index) => {
+                const thumb = document.createElement('img');
+                thumb.className = 'thumbnail';
+                thumb.src = photo.src;
+                thumb.alt = photo.title;
+                thumb.onclick = () => goToPhoto(index);
+                
+                if (index === currentPhotoIndex) {
+                    thumb.classList.add('active');
+                }
+                
+                strip.appendChild(thumb);
+            });
+        }
+
+        function updateActiveThumbnail() {
+            const thumbnails = document.querySelectorAll('.thumbnail');
+            thumbnails.forEach((thumb, index) => {
+                if (index === currentPhotoIndex) {
+                    thumb.classList.add('active');
+                } else {
+                    thumb.classList.remove('active');
+                }
+            });
+        }
+
+        function nextPhoto() {
+            if (currentPhotoIndex < photos.length - 1) {
+                currentPhotoIndex++;
+                updatePhoto();
+                updateCounter();
+            } else if (isAutoPlaying) {
+                currentPhotoIndex = 0;
+                updatePhoto();
+                updateCounter();
+            }
+        }
+
+        function previousPhoto() {
+            if (currentPhotoIndex > 0) {
+                currentPhotoIndex--;
+                updatePhoto();
+                updateCounter();
+            }
+        }
+
+        function goToPhoto(index) {
+            currentPhotoIndex = index;
+            updatePhoto();
+            updateCounter();
+        }
+
+        function toggleAutoPlay() {
+            const btn = document.getElementById('autoPlayBtn');
+            
+            if (isAutoPlaying) {
+                clearInterval(autoPlayInterval);
+                isAutoPlaying = false;
+                btn.textContent = 'Auto Play';
+                btn.classList.remove('active');
+            } else {
+                autoPlayInterval = setInterval(() => {
+                    nextPhoto();
+                }, autoPlayDelay);
+                isAutoPlaying = true;
+                btn.textContent = 'Stop';
+                btn.classList.add('active');
+            }
+        }
+
+        // DO NOT MODIFY: Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowLeft':
+                    previousPhoto();
+                    break;
+                case 'ArrowRight':
+                    nextPhoto();
+                    break;
+                case ' ':
+                    e.preventDefault();
+                    toggleAutoPlay();
+                    break;
+            }
+        });
+
+        // DO NOT MODIFY: Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // DO NOT MODIFY: Initialize gallery
+        window.addEventListener('load', initGallery);
+
+        // DO NOT MODIFY: Clean up auto play
+        window.addEventListener('beforeunload', () => {
+            if (autoPlayInterval) {
+                clearInterval(autoPlayInterval);
+            }
+        });
+    </script>
+</body>
 </html>

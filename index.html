@@ -135,7 +135,7 @@
             border-radius: 2px;
         }
 
-        /* MAIN PHOTO DISPLAY - NO CONTAINER CONSTRAINTS */
+/* MAIN PHOTO DISPLAY - NO CONTAINER CONSTRAINTS */
         .main-photo-container {
             position: relative;
             width: fit-content;
@@ -149,7 +149,6 @@
         }
 
         .main-photo {
-            /* Default styling - will be overridden by JavaScript */
             width: 100%;
             height: auto;
             border-radius: 15px;
@@ -363,7 +362,8 @@
             }
 
             .main-photo {
-                width: 100%;
+                max-width: 95vw;
+                max-height: 65vh;
             }
             
             .gallery-controls {
@@ -401,14 +401,15 @@
         /* LANDSCAPE MODE ON MOBILE */
         @media (max-width: 768px) and (orientation: landscape) {
             .main-photo {
-                width: 100%;
+                max-height: 80vh;
             }
         }
 
         /* VERY SMALL SCREENS */
         @media (max-width: 480px) {
             .main-photo {
-                width: 100%;
+                max-width: 98vw;
+                max-height: 60vh;
             }
             
             .photo-info {
@@ -492,7 +493,9 @@
                 <!-- SAFE TO CUSTOMIZE: All text content below -->
                 <p class="lead">I believe every story has the power to change how we see the world.</p>
                 
-                <p>My work lives at the intersection of journalism, art, and human connection. I'm a journalism and marketing student at Northwestern University and here I want to showcase the power of photography and visual storytelling.</p>
+                <p>My work lives at the intersection of journalism, art, and human connection.</p>
+                
+                <p>I'm a journalism and marketing student at Northwestern University and here I want to showcase the power of photography and visual storytelling.</p>
                 
                 <p>When I'm not writing or behind a camera, you'll find me exploring reading, getting lost in art galleries, or having deep conversations with strangers, family and friends. I believe the best stories come from authentic human connection.</p>
             </div>
@@ -586,20 +589,6 @@
 
             img.onload = () => {
                 img.classList.remove('photo-loading');
-                
-                // Determine if image is horizontal or vertical and apply appropriate sizing
-                const horizontalImages = ['Blossoming', 'Study Hang', 'Spring Renews', 'Shadow Play', 'Talking'];
-                const currentTitle = photos[currentPhotoIndex].title;
-                
-                if (horizontalImages.includes(currentTitle)) {
-                    // Horizontal images: width = 100%
-                    img.style.width = '100%';
-                    img.style.height = 'auto';
-                } else {
-                    // Vertical images: height = 100vh
-                    img.style.width = 'auto';
-                    img.style.height = '100vh';
-                }
             };
 
             prevBtn.disabled = currentPhotoIndex === 0;

@@ -135,21 +135,17 @@
             border-radius: 2px;
         }
 
-        /* MAIN PHOTO DISPLAY - FULLY ADAPTIVE TO IMAGE DIMENSIONS */
+        /* MAIN PHOTO DISPLAY - NO CONTAINER CONSTRAINTS */
         .main-photo-container {
             position: relative;
             width: fit-content;
-            max-width: 90vw;
-            max-height: 75vh;
             margin: 0 auto 3rem;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 15px;
-            overflow: hidden;
+            overflow: visible;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            border: 2px solid var(--border-color);
-            background: #f9f9f9;
         }
 
         .main-photo {
@@ -157,7 +153,8 @@
             max-height: 75vh;
             width: auto;
             height: auto;
-            object-fit: none;
+            border-radius: 15px;
+            border: 2px solid var(--border-color);
             transition: transform 0.3s ease;
             display: block;
         }
@@ -363,8 +360,6 @@
             }
             
             .main-photo-container {
-                max-width: 95vw;
-                max-height: 65vh;
                 margin-bottom: 2rem;
             }
 
@@ -407,10 +402,6 @@
 
         /* LANDSCAPE MODE ON MOBILE */
         @media (max-width: 768px) and (orientation: landscape) {
-            .main-photo-container {
-                max-height: 80vh;
-            }
-
             .main-photo {
                 max-height: 80vh;
             }
@@ -418,10 +409,6 @@
 
         /* VERY SMALL SCREENS */
         @media (max-width: 480px) {
-            .main-photo-container {
-                max-height: 60vh;
-            }
-
             .main-photo {
                 max-width: 98vw;
                 max-height: 60vh;
@@ -558,7 +545,7 @@
                 title: 'In Between'
             },
             {
-                src: 'IMG_0676-2.JPG',
+                src: 'IMG_0676-2.jpg',
                 title: 'Talking'
             },
             {

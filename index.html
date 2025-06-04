@@ -363,8 +363,7 @@
             }
 
             .main-photo {
-                max-width: 95vw;
-                max-height: 65vh;
+                width: 100%;
             }
             
             .gallery-controls {
@@ -402,15 +401,14 @@
         /* LANDSCAPE MODE ON MOBILE */
         @media (max-width: 768px) and (orientation: landscape) {
             .main-photo {
-                max-height: 80vh;
+                width: 100%;
             }
         }
 
         /* VERY SMALL SCREENS */
         @media (max-width: 480px) {
             .main-photo {
-                max-width: 98vw;
-                max-height: 60vh;
+                width: 100%;
             }
             
             .photo-info {
@@ -544,7 +542,7 @@
                 title: 'In Between'
             },
             {
-                src: 'IMG_0676-2.JPG',
+                src: 'IMG_0676-2.jpg',
                 title: 'Talking'
             },
             {
@@ -590,6 +588,20 @@
 
             img.onload = () => {
                 img.classList.remove('photo-loading');
+                
+                // Determine if image is horizontal or vertical and apply appropriate sizing
+                const horizontalImages = ['Blossoming', 'Study Hang', 'Spring Renews', 'Shadow Play', 'Talking'];
+                const currentTitle = photos[currentPhotoIndex].title;
+                
+                if (horizontalImages.includes(currentTitle)) {
+                    // Horizontal images: width = 100%
+                    img.style.width = '100%';
+                    img.style.height = 'auto';
+                } else {
+                    // Vertical images: height = 100vh
+                    img.style.width = 'auto';
+                    img.style.height = '100vh';
+                }
             };
 
             prevBtn.disabled = currentPhotoIndex === 0;

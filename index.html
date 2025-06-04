@@ -135,12 +135,12 @@
             border-radius: 2px;
         }
 
-        /* MAIN PHOTO DISPLAY - MODIFIED FOR RESPONSIVE FULL IMAGE DISPLAY */
+        /* MAIN PHOTO DISPLAY - FULLY ADAPTIVE TO IMAGE DIMENSIONS */
         .main-photo-container {
             position: relative;
-            width: 100%;
+            width: fit-content;
             max-width: 90vw;
-            max-height: 70vh;
+            max-height: 75vh;
             margin: 0 auto 3rem;
             display: flex;
             align-items: center;
@@ -153,11 +153,11 @@
         }
 
         .main-photo {
-            max-width: 100%;
-            max-height: 100%;
+            max-width: 90vw;
+            max-height: 75vh;
             width: auto;
             height: auto;
-            object-fit: contain;
+            object-fit: none;
             transition: transform 0.3s ease;
             display: block;
         }
@@ -364,8 +364,13 @@
             
             .main-photo-container {
                 max-width: 95vw;
-                max-height: 60vh;
+                max-height: 65vh;
                 margin-bottom: 2rem;
+            }
+
+            .main-photo {
+                max-width: 95vw;
+                max-height: 65vh;
             }
             
             .gallery-controls {
@@ -403,14 +408,23 @@
         /* LANDSCAPE MODE ON MOBILE */
         @media (max-width: 768px) and (orientation: landscape) {
             .main-photo-container {
-                max-height: 70vh;
+                max-height: 80vh;
+            }
+
+            .main-photo {
+                max-height: 80vh;
             }
         }
 
         /* VERY SMALL SCREENS */
         @media (max-width: 480px) {
             .main-photo-container {
-                max-height: 50vh;
+                max-height: 60vh;
+            }
+
+            .main-photo {
+                max-width: 98vw;
+                max-height: 60vh;
             }
             
             .photo-info {

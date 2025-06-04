@@ -135,25 +135,31 @@
             border-radius: 2px;
         }
 
-        /* MAIN PHOTO DISPLAY - DO NOT MODIFY (Core functionality) */
+        /* MAIN PHOTO DISPLAY - MODIFIED FOR RESPONSIVE FULL IMAGE DISPLAY */
         .main-photo-container {
             position: relative;
             width: 100%;
-            max-width: 800px; /* SAFE TO CUSTOMIZE: Max width of photo container */
+            max-width: 90vw;
+            max-height: 70vh;
             margin: 0 auto 3rem;
-            /* SAFE TO CUSTOMIZE: Visual styling */
+            display: flex;
+            align-items: center;
+            justify-content: center;
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             border: 2px solid var(--border-color);
+            background: #f9f9f9;
         }
 
         .main-photo {
-            width: 100%;
-            height: 500px; /* SAFE TO CUSTOMIZE: Height of main photo */
-            object-fit: cover;
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
             transition: transform 0.3s ease;
-            /* DO NOT MODIFY: Core image functionality */
+            display: block;
         }
 
         /* SAFE TO CUSTOMIZE: Hover effect */
@@ -346,18 +352,20 @@
             font-style: italic;
         }
 
-        /* RESPONSIVE DESIGN - SAFE TO CUSTOMIZE BREAKPOINTS AND STYLES */
+        /* RESPONSIVE DESIGN - MODIFIED FOR BETTER MOBILE EXPERIENCE */
         @media (max-width: 768px) {
             .header {
-                height: 20vh; /* SAFE TO CUSTOMIZE: Mobile header height */
+                height: 20vh;
             }
             
             .gallery-section {
                 padding: 2rem 1rem;
             }
             
-            .main-photo {
-                height: 300px; /* SAFE TO CUSTOMIZE: Mobile photo height */
+            .main-photo-container {
+                max-width: 95vw;
+                max-height: 60vh;
+                margin-bottom: 2rem;
             }
             
             .gallery-controls {
@@ -381,6 +389,40 @@
             
             .about-section {
                 padding: 3rem 1rem;
+            }
+
+            .photo-info {
+                padding: 1rem;
+            }
+
+            .photo-title {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* LANDSCAPE MODE ON MOBILE */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .main-photo-container {
+                max-height: 70vh;
+            }
+        }
+
+        /* VERY SMALL SCREENS */
+        @media (max-width: 480px) {
+            .main-photo-container {
+                max-height: 50vh;
+            }
+            
+            .photo-info {
+                padding: 0.5rem;
+            }
+            
+            .photo-title {
+                font-size: 1rem;
+            }
+            
+            .photo-counter {
+                font-size: 0.8rem;
             }
         }
 

@@ -135,8 +135,43 @@
             border-radius: 2px;
         }
 
-/* MAIN PHOTO DISPLAY - NO CONTAINER CONSTRAINTS */
-        .main-photo-container {
+        /* LAYOUT TOGGLE BUTTON */
+        .layout-toggle {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .toggle-btn {
+            padding: 10px 20px;
+            background: var(--dark-color);
+            border: 2px solid var(--primary-color);
+            border-radius: 25px;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Times New Roman', serif;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .toggle-btn:hover {
+            background: var(--primary-color);
+            color: var(--dark-color);
+        }
+
+        /* HORIZONTAL LAYOUT (DEFAULT) */
+        .gallery-container.horizontal {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .gallery-container.horizontal .main-photo-container {
             position: relative;
             width: fit-content;
             margin: 0 auto 3rem;
@@ -148,7 +183,7 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
-        .main-photo {
+        .gallery-container.horizontal .main-photo {
             width: 100%;
             height: auto;
             border-radius: 15px;
@@ -157,7 +192,123 @@
             display: block;
         }
 
-        /* SAFE TO CUSTOMIZE: Hover effect */
+        .gallery-container.horizontal .gallery-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .gallery-container.horizontal .thumbnail-strip {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            overflow-x: auto;
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .gallery-container.horizontal .thumbnail {
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            border: 3px solid transparent;
+        }
+
+        /* VERTICAL LAYOUT */
+        .gallery-container.vertical {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+
+        .gallery-container.vertical .main-photo-container {
+            flex: 1;
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .gallery-container.vertical .main-photo {
+            width: 100%;
+            height: auto;
+            max-height: 70vh;
+            object-fit: contain;
+            border-radius: 15px;
+            border: 2px solid var(--border-color);
+            transition: transform 0.3s ease;
+            display: block;
+        }
+
+        .gallery-container.vertical .sidebar {
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            position: sticky;
+            top: 2rem;
+        }
+
+        .gallery-container.vertical .gallery-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            order: 1;
+        }
+
+        .gallery-container.vertical .thumbnail-strip {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-height: 60vh;
+            overflow-y: auto;
+            padding: 1rem;
+            background: var(--light-bg);
+            border-radius: 15px;
+            order: 2;
+        }
+
+        .gallery-container.vertical .thumbnail {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+        }
+
+        .gallery-container.vertical .photo-info {
+            position: static;
+            background: var(--light-bg);
+            color: var(--text-color);
+            padding: 1.5rem;
+            text-align: left;
+            border-radius: 15px;
+            margin-top: 1rem;
+            order: 0;
+        }
+
+        .gallery-container.vertical .photo-title {
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+        }
+
+        .gallery-container.vertical .photo-counter {
+            color: var(--text-color);
+            opacity: 0.7;
+        }
+
+        /* SHARED STYLES */
         .main-photo:hover {
             transform: scale(1.02);
         }
@@ -167,7 +318,6 @@
             bottom: 0;
             left: 0;
             right: 0;
-            /* SAFE TO CUSTOMIZE: Info overlay styling */
             background: linear-gradient(transparent, rgba(0,0,0,0.8));
             color: white;
             padding: 2rem;
@@ -175,7 +325,6 @@
         }
 
         .photo-title {
-            /* SAFE TO CUSTOMIZE: Photo title styling */
             font-family: 'Times New Roman', serif;
             font-size: 1.5rem;
             font-weight: bold;
@@ -184,23 +333,12 @@
         }
 
         .photo-counter {
-            /* SAFE TO CUSTOMIZE: Counter styling */
             font-size: 0.9rem;
             opacity: 0.8;
             font-style: italic;
         }
 
-        /* NAVIGATION CONTROLS - SAFE TO CUSTOMIZE APPEARANCE */
-        .gallery-controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 2rem; /* SAFE TO CUSTOMIZE: Spacing between controls */
-            margin-bottom: 3rem;
-        }
-
         .nav-arrow {
-            /* SAFE TO CUSTOMIZE: Button appearance */
             width: 60px;
             height: 60px;
             border-radius: 50%;
@@ -213,10 +351,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            /* DO NOT MODIFY: onclick functionality */
         }
 
-        /* SAFE TO CUSTOMIZE: Hover effects */
         .nav-arrow:hover {
             transform: scale(1.1);
             background: var(--primary-color);
@@ -235,7 +371,6 @@
         }
 
         .auto-play-btn {
-            /* SAFE TO CUSTOMIZE: Auto-play button styling */
             padding: 12px 25px;
             background: var(--dark-color);
             border: 2px solid var(--primary-color);
@@ -248,10 +383,8 @@
             cursor: pointer;
             transition: all 0.3s ease;
             font-family: 'Times New Roman', serif;
-            /* DO NOT MODIFY: onclick functionality */
         }
 
-        /* SAFE TO CUSTOMIZE: Button hover and active states */
         .auto-play-btn:hover {
             transform: translateY(-2px);
             background: var(--primary-color);
@@ -263,31 +396,6 @@
             color: var(--dark-color);
         }
 
-        /* THUMBNAIL STRIP - SAFE TO CUSTOMIZE APPEARANCE */
-        .thumbnail-strip {
-            display: flex;
-            justify-content: center;
-            gap: 1rem; /* SAFE TO CUSTOMIZE: Spacing between thumbnails */
-            overflow-x: auto;
-            padding: 1rem 0;
-            margin-bottom: 2rem;
-        }
-
-        .thumbnail {
-            /* SAFE TO CUSTOMIZE: Thumbnail appearance */
-            width: 80px;
-            height: 60px;
-            object-fit: cover;
-            border-radius: 8px;
-            cursor: pointer;
-            opacity: 0.6;
-            transition: all 0.3s ease;
-            flex-shrink: 0;
-            border: 3px solid transparent;
-            /* DO NOT MODIFY: onclick functionality */
-        }
-
-        /* SAFE TO CUSTOMIZE: Thumbnail hover and active states */
         .thumbnail:hover {
             opacity: 0.8;
             transform: scale(1.05);
@@ -301,20 +409,18 @@
 
         /* ABOUT SECTION - SAFE TO CUSTOMIZE */
         .about-section {
-            /* SAFE TO CUSTOMIZE: Section styling */
             padding: 4rem 2rem;
             background: var(--light-bg);
             border-top: 1px solid var(--border-color);
         }
 
         .about-content {
-            max-width: 800px; /* SAFE TO CUSTOMIZE: Content width */
+            max-width: 800px;
             margin: 0 auto;
             text-align: center;
         }
 
         .about-content .lead {
-            /* SAFE TO CUSTOMIZE: Lead paragraph styling */
             font-size: 1.3rem;
             font-weight: bold;
             color: var(--dark-color);
@@ -324,7 +430,6 @@
         }
 
         .about-content p {
-            /* SAFE TO CUSTOMIZE: Paragraph styling */
             font-size: 1.1rem;
             margin-bottom: 1.5rem;
             line-height: 1.8;
@@ -332,7 +437,6 @@
 
         /* FOOTER - SAFE TO CUSTOMIZE */
         .footer {
-            /* SAFE TO CUSTOMIZE: Footer styling */
             background: var(--dark-color);
             color: white;
             text-align: center;
@@ -347,7 +451,32 @@
             font-style: italic;
         }
 
-        /* RESPONSIVE DESIGN - MODIFIED FOR BETTER MOBILE EXPERIENCE */
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 1024px) {
+            .gallery-container.vertical {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .gallery-container.vertical .sidebar {
+                width: 100%;
+                position: static;
+            }
+
+            .gallery-container.vertical .thumbnail-strip {
+                flex-direction: row;
+                max-height: none;
+                overflow-x: auto;
+                overflow-y: visible;
+            }
+
+            .gallery-container.vertical .thumbnail {
+                width: 120px;
+                height: 90px;
+                flex-shrink: 0;
+            }
+        }
+
         @media (max-width: 768px) {
             .header {
                 height: 20vh;
@@ -357,16 +486,19 @@
                 padding: 2rem 1rem;
             }
             
-            .main-photo-container {
+            .gallery-container.horizontal .main-photo-container,
+            .gallery-container.vertical .main-photo-container {
                 margin-bottom: 2rem;
             }
 
-            .main-photo {
+            .gallery-container.horizontal .main-photo,
+            .gallery-container.vertical .main-photo {
                 max-width: 95vw;
                 max-height: 65vh;
             }
             
-            .gallery-controls {
+            .gallery-container.horizontal .gallery-controls,
+            .gallery-container.vertical .gallery-controls {
                 gap: 1rem;
             }
             
@@ -376,13 +508,19 @@
                 font-size: 1.2rem;
             }
             
-            .thumbnail-strip {
+            .gallery-container.horizontal .thumbnail-strip,
+            .gallery-container.vertical .thumbnail-strip {
                 padding: 0.5rem;
             }
             
-            .thumbnail {
+            .gallery-container.horizontal .thumbnail {
                 width: 60px;
                 height: 45px;
+            }
+
+            .gallery-container.vertical .thumbnail {
+                width: 80px;
+                height: 60px;
             }
             
             .about-section {
@@ -398,16 +536,16 @@
             }
         }
 
-        /* LANDSCAPE MODE ON MOBILE */
         @media (max-width: 768px) and (orientation: landscape) {
-            .main-photo {
+            .gallery-container.horizontal .main-photo,
+            .gallery-container.vertical .main-photo {
                 max-height: 80vh;
             }
         }
 
-        /* VERY SMALL SCREENS */
         @media (max-width: 480px) {
-            .main-photo {
+            .gallery-container.horizontal .main-photo,
+            .gallery-container.vertical .main-photo {
                 max-width: 98vw;
                 max-height: 60vh;
             }
@@ -437,10 +575,14 @@
             transform: translateY(0);
         }
 
-        /* SAFE TO CUSTOMIZE: Loading animation */
         .photo-loading {
             opacity: 0.5;
             transition: opacity 0.3s ease;
+        }
+
+        /* LAYOUT TRANSITION */
+        .gallery-container {
+            transition: all 0.4s ease;
         }
     </style>
 </head>
@@ -448,7 +590,6 @@
     <!-- HEADER SECTION -->
     <header class="header">
         <div class="header-content">
-            <!-- SAFE TO CUSTOMIZE: Your name and title -->
             <h1 class="header-title">Bettina Sanchez</h1>
         </div>
     </header>
@@ -456,30 +597,43 @@
     <!-- PHOTO GALLERY SECTION -->
     <section class="gallery-section">
         <div class="container">
-            <!-- SAFE TO CUSTOMIZE: Section title -->
             <h2 class="section-title fade-in">My Photography</h2>
             
-            <!-- Main Photo Display - DO NOT MODIFY STRUCTURE -->
-            <div class="main-photo-container fade-in">
-                <img class="main-photo" id="mainPhoto" src="" alt="">
-                <div class="photo-info">
-                    <div class="photo-title" id="mainPhotoTitle">Loading...</div>
-                    <div class="photo-counter">
-                        <span id="currentPhoto">1</span> / <span id="totalPhotos">12</span>
+            <!-- Layout Toggle -->
+            <div class="layout-toggle fade-in">
+                <button class="toggle-btn" id="layoutToggle" onclick="toggleLayout()">
+                    <i class="fas fa-th-large"></i>
+                    Switch to Vertical View
+                </button>
+            </div>
+            
+            <!-- Gallery Container -->
+            <div class="gallery-container horizontal fade-in" id="galleryContainer">
+                <!-- Main Photo Display -->
+                <div class="main-photo-container">
+                    <img class="main-photo" id="mainPhoto" src="" alt="">
+                    <div class="photo-info" id="photoInfo">
+                        <div class="photo-title" id="mainPhotoTitle">Loading...</div>
+                        <div class="photo-counter">
+                            <span id="currentPhoto">1</span> / <span id="totalPhotos">12</span>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Navigation Controls - DO NOT MODIFY STRUCTURE OR onclick ATTRIBUTES -->
-            <div class="gallery-controls fade-in">
-                <button class="nav-arrow" id="prevBtn" onclick="previousPhoto()">←</button>
-                <button class="auto-play-btn" id="autoPlayBtn" onclick="toggleAutoPlay()">Auto Play</button>
-                <button class="nav-arrow" id="nextBtn" onclick="nextPhoto()">→</button>
-            </div>
+                <!-- Sidebar for vertical layout -->
+                <div class="sidebar">
+                    <!-- Navigation Controls -->
+                    <div class="gallery-controls">
+                        <button class="nav-arrow" id="prevBtn" onclick="previousPhoto()">←</button>
+                        <button class="auto-play-btn" id="autoPlayBtn" onclick="toggleAutoPlay()">Auto Play</button>
+                        <button class="nav-arrow" id="nextBtn" onclick="nextPhoto()">→</button>
+                    </div>
 
-            <!-- Thumbnail Strip - DO NOT MODIFY STRUCTURE -->
-            <div class="thumbnail-strip fade-in" id="thumbnailStrip">
-                <!-- Thumbnails will be generated by JavaScript - DO NOT MODIFY -->
+                    <!-- Thumbnail Strip -->
+                    <div class="thumbnail-strip" id="thumbnailStrip">
+                        <!-- Thumbnails will be generated by JavaScript -->
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -487,10 +641,8 @@
     <!-- ABOUT SECTION -->
     <section class="about-section">
         <div class="container">
-            <!-- SAFE TO CUSTOMIZE: Section title -->
             <h2 class="section-title fade-in">About Me</h2>
             <div class="about-content fade-in">
-                <!-- SAFE TO CUSTOMIZE: All text content below -->
                 <p class="lead">I believe every story has the power to change how we see the world.</p>
                 
                 <p>My work lives at the intersection of journalism, art, and human connection.</p>
@@ -505,18 +657,16 @@
     <!-- FOOTER -->
     <footer class="footer">
         <div class="container">
-            <!-- SAFE TO CUSTOMIZE: Footer text -->
             <p>&copy; 2025 Bettina Sanchez. Capturing stories, one frame at a time.</p>
         </div>
     </footer>
 
     <script>
-        // PHOTOGRAPHY GALLERY DATA - SAFE TO CUSTOMIZE
-        // Replace these placeholder images with your actual photos
+        // PHOTOGRAPHY GALLERY DATA
         const photos = [
             {
                 src: 'IMG_0706.jpg',
-                title: 'Blossoming' // SAFE TO CUSTOMIZE: Photo titles
+                title: 'Blossoming'
             },
             {
                 src: 'IMG_0731.jpg',
@@ -543,7 +693,7 @@
                 title: 'In Between'
             },
             {
-                src: 'IMG_0676-2.jpg',
+                src: 'IMG_0676-2.JPG',
                 title: 'Talking'
             },
             {
@@ -560,15 +710,34 @@
             }
         ];
 
-        // DO NOT MODIFY: Core functionality variables
+        // Core functionality variables
         let currentPhotoIndex = 0;
         let autoPlayInterval = null;
         let isAutoPlaying = false;
+        let isVerticalLayout = false;
 
-        // SAFE TO CUSTOMIZE: Auto-play timing (currently 3 seconds)
         const autoPlayDelay = 3000;
 
-        // DO NOT MODIFY: Core functionality functions below
+        // Layout toggle function
+        function toggleLayout() {
+            const container = document.getElementById('galleryContainer');
+            const toggleBtn = document.getElementById('layoutToggle');
+            const icon = toggleBtn.querySelector('i');
+            
+            isVerticalLayout = !isVerticalLayout;
+            
+            if (isVerticalLayout) {
+                container.classList.remove('horizontal');
+                container.classList.add('vertical');
+                toggleBtn.innerHTML = '<i class="fas fa-th"></i> Switch to Horizontal View';
+            } else {
+                container.classList.remove('vertical');
+                container.classList.add('horizontal');
+                toggleBtn.innerHTML = '<i class="fas fa-th-large"></i> Switch to Vertical View';
+            }
+        }
+
+        // Core functionality functions
         function initGallery() {
             updatePhoto();
             updateCounter();
@@ -676,7 +845,7 @@
             }
         }
 
-        // DO NOT MODIFY: Keyboard navigation
+        // Keyboard navigation
         document.addEventListener('keydown', (e) => {
             switch(e.key) {
                 case 'ArrowLeft':
@@ -692,7 +861,7 @@
             }
         });
 
-        // DO NOT MODIFY: Scroll animations
+        // Scroll animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -710,10 +879,10 @@
             observer.observe(el);
         });
 
-        // DO NOT MODIFY: Initialize gallery
+        // Initialize gallery
         window.addEventListener('load', initGallery);
 
-        // DO NOT MODIFY: Clean up auto play
+        // Clean up auto play
         window.addEventListener('beforeunload', () => {
             if (autoPlayInterval) {
                 clearInterval(autoPlayInterval);
